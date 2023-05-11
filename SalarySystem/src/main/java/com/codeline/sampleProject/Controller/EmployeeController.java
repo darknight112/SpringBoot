@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Date;
+import java.util.List;
 
 @Controller
 public class EmployeeController {
@@ -17,6 +18,12 @@ public class EmployeeController {
     public void saveEmployee(){
         createEmployee();
     }
+
+    @RequestMapping("employee/get")
+    public List<Employee> getEmployee () {
+        return employeeService.getEmployee();
+    }
+
 
 
     public void createEmployee() {
