@@ -10,13 +10,15 @@ import java.util.List;
 
 @Service
 public class AccountService {
+
+    public List<Account> getAccount(){
+        return accountRepository.findAll();
+    }
     @Autowired
     AccountRepository accountRepository;
     public void saveAccount(Account account){
         accountRepository.save(account);
     }
 
-    public List<Account> getAccount(){
-        return accountRepository.findAll();
-    }
+
 }

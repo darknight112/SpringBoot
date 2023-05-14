@@ -1,7 +1,6 @@
 package com.codeline.sampleProject.Controller;
 
 import com.codeline.sampleProject.Models.Account;
-import com.codeline.sampleProject.Models.Employee;
 import com.codeline.sampleProject.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,8 +19,9 @@ public class AccountController {
     }
 
     @RequestMapping("account/get")
-    public List<Account> getEmployee () {
-        return accountService.getAccount();
+    public List<Account> getAccounts () {
+        List<Account> accounts =  accountService.getAccount();
+        return accounts;
     }
 
 
