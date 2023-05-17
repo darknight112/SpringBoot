@@ -1,12 +1,17 @@
 package com.codeline.sampleProject.Controller;
 import com.codeline.sampleProject.Models.Account;
+import com.codeline.sampleProject.Models.Employee;
+import com.codeline.sampleProject.RequestObjects.GetAccountRequestObject;
+import com.codeline.sampleProject.RequestObjects.GetEmployeeRequestObject;
+import com.codeline.sampleProject.ResponseObjects.GetAccountResponse;
+import com.codeline.sampleProject.ResponseObjects.GetEmployeeResponse;
 import com.codeline.sampleProject.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Random;
+
 
 import java.util.Date;
 import java.util.List;
@@ -15,25 +20,42 @@ public class AccountController {
     @Autowired
     AccountService accountService;
     @PostMapping("account/create")
-    public void saveAccount(){
-        createAccount();
+    public void saveAccount (@RequestBody GetAccountRequestObject accountRequestObject) {
+        createAccount(accountRequestObject);
     }
+
     @GetMapping("account/get")
-    public List<Account> getAccounts () {
-        List<Account> accounts =  accountService.getAccount();
-        return accounts;
+    public List<Account> getAccount () {
+        return accountService.getAccount();
     }
-    public void createAccount() {
+
+    //Path Variable
+    @RequestMapping("account/get/{accountId}")
+    public GetAccountResponse createAccount (@PathVariable Long accountId) {
+        return accountService.getAccountById(accountId);
+    }
+    public void createAccount(GetAccountRequestObject accountRequestObject) {
         Account account = new Account();
+        RandomNumberGenerator random = new RandomNumberGenerator();
         account.setAccountType("Saving");
-        account.setAccountNumber("55258852");
-        account.setAccountHolderName("Abdullah");
+        account.setAccountNumber(random.toString());
+        account.setAccountHolderName(accountRequestObject.getName());
         account.setCreatedDate(new Date());
         account.setIsActive(true);
-        account.setBankName("Bank Muscat");
+        account.setBankName(accountRequestObject.getBankName());
         account.setBankBranch("Al Khoud");
         account.setSwiftCode("Y23123");
         account.setUpdatedDate(new Date());
         accountService.saveAccount(account);
     }
+
+    public class RandomNumberGenerator {
+        public static long generateRandomNumber() {
+            Random random = new Random();
+            long min = 1000000000L; // 10-digit minimum value
+            long max = 9999999999L; // 10-digit maximum value
+            return random.nextLong() % (max - min + 1) + min;
+        }
+    }
+
 }
