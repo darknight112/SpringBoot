@@ -1,32 +1,29 @@
 package com.codeline.sampleProject.Controller;
-
 import com.codeline.sampleProject.Models.Account;
 import com.codeline.sampleProject.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Date;
 import java.util.List;
-
-@Controller
+@RestController
 public class AccountController {
     @Autowired
     AccountService accountService;
-    @RequestMapping("account/create")
+    @PostMapping("account/create")
     public void saveAccount(){
         createAccount();
     }
-
-    @RequestMapping("account/get")
+    @GetMapping("account/get")
     public List<Account> getAccounts () {
         List<Account> accounts =  accountService.getAccount();
         return accounts;
     }
-
-
     public void createAccount() {
-
         Account account = new Account();
         account.setAccountType("Saving");
         account.setAccountNumber("55258852");
@@ -39,5 +36,4 @@ public class AccountController {
         account.setUpdatedDate(new Date());
         accountService.saveAccount(account);
     }
-
 }
