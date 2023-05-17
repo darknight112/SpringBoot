@@ -29,7 +29,7 @@ public class SalaryController {
     }
 
     //Path Variable
-    @PostMapping("salary/get/{salaryId}")
+    @GetMapping("salary/get/{salaryId}")
     public GetSalaryResponse createSalary (@PathVariable Long salaryId) {
         return salaryService.getSalaryById(salaryId);
     }

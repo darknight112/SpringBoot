@@ -29,7 +29,7 @@ public class SalaryService {
         if(!optionalSalary.isEmpty())
         {
             Salary salary =  optionalSalary.get();
-            GetSalaryResponse salaryResponse = new GetSalaryResponse(salary.getId(), salary.getAmount(), salary.getCurrency());
+            GetSalaryResponse salaryResponse = new GetSalaryResponse(salary.getAmount());
             return salaryResponse;
         }
 

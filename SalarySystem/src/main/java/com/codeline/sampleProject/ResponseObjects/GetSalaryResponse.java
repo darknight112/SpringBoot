@@ -12,6 +12,15 @@ import lombok.Setter;
 public class GetSalaryResponse {
     Double amount;
 
-    public GetSalaryResponse(Long id, Double amount, String currency) {
+    String currency;
+
+    Double allowances;
+
+    Double bonus;
+
+//    public GetSalaryResponse(Long id, Double amount, String currency) {
+//    }
+
+    public GetSalaryResponse(Double amount) {
     }
 }
