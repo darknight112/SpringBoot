@@ -21,6 +21,5 @@ public class GetSalaryResponse {
 //    public GetSalaryResponse(Long id, Double amount, String currency) {
 //    }
 
-    public GetSalaryResponse(Double amount) {
-    }
+
 }

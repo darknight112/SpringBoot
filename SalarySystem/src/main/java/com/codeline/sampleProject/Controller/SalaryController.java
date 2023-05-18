@@ -34,6 +34,12 @@ public class SalaryController {
         return salaryService.getSalaryById(salaryId);
     }
 
+//    @PutMapping("salary/update/{salaryId}")
+//    public GetSalaryResponse updateSalary(@PathVariable Long salaryId){
+//        return  salaryService.getSalaryById(salaryId);
+//
+//    }
+
     public void createSalary(GetSalaryRequestObject salaryRequestObject) {
 
         Salary salary = new Salary();
