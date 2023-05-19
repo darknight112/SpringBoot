@@ -6,7 +6,7 @@ cd C:\Users\hkala\OneDrive\Desktop\Springboot\SpringBoot  # Replace with the pat
 git add .
 
 # Commit the changes
-git commit -m "Automatic commit"
+git commit -m "Automatic commit" --allow-empty
 
 # Push the changes to GitHub
 git push
