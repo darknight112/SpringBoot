@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-16"?>
-<Task version="1.3" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
 
   <Triggers>
-    <TimeTrigger>
+    <CalendarTrigger>
+      <StartBoundary>2023-05-19T00:00:00</StartBoundary> <!-- Set the desired start time here -->
       <Repetition>
         <Interval>PT5M</Interval>
+        <Duration>P1D</Duration>
         <StopAtDurationEnd>false</StopAtDurationEnd>
       </Repetition>
-      <StartBoundary>2023-05-19T00:00:00</StartBoundary> <!-- Set the desired start time here -->
-      <EndBoundary>2023-05-20T23:59:59</EndBoundary> <!-- Set the desired end time here -->
       <Enabled>true</Enabled>
-    </TimeTrigger>
+    </CalendarTrigger>
   </Triggers>
-  
+
   <Principals>
     <Principal id="Author">
       <UserId>Darknight</UserId> <!-- Replace with your Windows username -->
       <LogonType>InteractiveToken</LogonType>
-      <RunLevel>LeastPrivilege</RunLevel>
+      <RunLevel>HighestAvailable</RunLevel>
     </Principal>
   </Principals>
-  
+
   <Settings>
-    <MultipleInstancesPolicy>Parallel</MultipleInstancesPolicy>
+    <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
     <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
     <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
     <AllowHardTerminate>true</AllowHardTerminate>
@@ -37,15 +37,15 @@
     <Hidden>false</Hidden>
     <RunOnlyIfIdle>false</RunOnlyIfIdle>
     <WakeToRun>false</WakeToRun>
-    <ExecutionTimeLimit>PT72H</ExecutionTimeLimit>
+    <ExecutionTimeLimit>P3D</ExecutionTimeLimit>
     <Priority>7</Priority>
   </Settings>
-  
-  <Actions>
+
+  <Actions Context="Author">
     <Exec>
-      <Command>C:\path\to\your\script.bat</Command> <!-- Replace with the path to your script -->
+      <Command>C:\Users\hkala\OneDrive\Desktop\Springboot\SpringBoot\AutoCommitScript.bat</Command> <!-- Replace with the path to your script -->
       <WorkingDirectory>C:\Users\hkala\OneDrive\Desktop\Springboot\SpringBoot</WorkingDirectory> <!-- Replace with the working directory path -->
     </Exec>
   </Actions>
-  
+
 </Task>
