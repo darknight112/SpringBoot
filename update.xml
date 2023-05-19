@@ -3,7 +3,7 @@
 
   <Triggers>
     <CalendarTrigger>
-      <StartBoundary>2023-05-19T00:00:00</StartBoundary> <!-- Set the desired start time here -->
+      <StartBoundary>2023-05-19T11:06:00</StartBoundary> <!-- Set the desired start time here -->
       <Repetition>
         <Interval>PT5M</Interval>
         <Duration>P1D</Duration>
