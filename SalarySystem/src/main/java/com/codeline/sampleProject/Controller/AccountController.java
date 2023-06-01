@@ -1,20 +1,15 @@
 package com.codeline.sampleProject.Controller;
+
 import com.codeline.sampleProject.Models.Account;
-import com.codeline.sampleProject.Models.Employee;
 import com.codeline.sampleProject.RequestObjects.GetAccountRequestObject;
-import com.codeline.sampleProject.RequestObjects.GetEmployeeRequestObject;
 import com.codeline.sampleProject.ResponseObjects.GetAccountResponse;
-import com.codeline.sampleProject.ResponseObjects.GetEmployeeResponse;
 import com.codeline.sampleProject.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Random;
-
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 @RestController
 public class AccountController {
     @Autowired
