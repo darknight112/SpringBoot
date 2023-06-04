@@ -7,16 +7,21 @@ import com.codeline.sampleProject.Service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Random;
+
 @RestController
 public class AccountController {
     @Autowired
     AccountService accountService;
-    @PostMapping("account/create")
-    public void saveAccount (@RequestBody GetAccountRequestObject accountRequestObject) {
-        createAccount(accountRequestObject);
+
+    @GetMapping("account/create")
+    public void saveAccount (@RequestParam String name, @RequestParam String bankName) {
+
+        GetAccountRequestObject obj = new GetAccountRequestObject();
+        obj.setName(name);
+        obj.setBankName(bankName);
+        accountService.createAccount(obj);
     }
 
     @GetMapping("account/get")
@@ -30,28 +35,15 @@ public class AccountController {
     public GetAccountResponse createAccount (@PathVariable Long accountId) {
         return accountService.getAccountById(accountId);
     }
-    public void createAccount(GetAccountRequestObject accountRequestObject) {
-        Account account = new Account();
-        RandomNumberGenerator random = new RandomNumberGenerator();
-        account.setAccountType("Saving");
-        account.setAccountNumber(random.toString());
-        account.setAccountHolderName(accountRequestObject.getName());
-        account.setCreatedDate(new Date());
-        account.setIsActive(true);
-        account.setBankName(accountRequestObject.getBankName());
-        account.setBankBranch("Al Khoud");
-        account.setSwiftCode("Y23123");
-        account.setUpdatedDate(new Date());
-        accountService.saveAccount(account);
-    }
 
-    public class RandomNumberGenerator {
-        public static long generateRandomNumber() {
+
+
+        public static Long generateRandomNumber() {
             Random random = new Random();
             long min = 1000000000L; // 10-digit minimum value
             long max = 9999999999L; // 10-digit maximum value
             return random.nextLong() % (max - min + 1) + min;
         }
-    }
+
 
 }
