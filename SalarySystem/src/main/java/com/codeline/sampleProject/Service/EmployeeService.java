@@ -38,5 +38,8 @@ public class EmployeeService {
 
     }
 
+    public List<Employee> getEmployeesByDept(String deptName){
+        return employeeRepository.getEmployeeByDepartment(deptName);
+    }
 
 }

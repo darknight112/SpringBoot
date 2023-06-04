@@ -36,4 +36,8 @@ public class ManagerService {
 
     }
 
+    public Manager getManagerByTeamName(String nameOfTeam){
+        return managerRepository.getManagerByTeamName(nameOfTeam);
+    }
+
 }
