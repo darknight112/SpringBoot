@@ -5,31 +5,29 @@ import com.codeline.sampleProject.RequestObjects.GetManagerRequestObject;
 import com.codeline.sampleProject.ResponseObjects.GetManagerResponse;
 import com.codeline.sampleProject.Service.ManagerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "manager")
 public class MangerController {
     @Autowired
     ManagerService managerService;
 
-    @RequestMapping("manager/create")
+    @RequestMapping("create")
     public void saveManager (@RequestBody GetManagerRequestObject managerRequestObject) {
         createManager(managerRequestObject);
     }
 
-    @RequestMapping("manager/get")
+    @RequestMapping("get")
     public List<Manager> getManager () {
         return managerService.getManager();
     }
 
     //Path Variable
-    @RequestMapping("manager/get/{managerId}")
+    @RequestMapping("get/{managerId}")
     public GetManagerResponse createManager (@PathVariable Long managerId) {
         return managerService.getManagerById(managerId);
     }
@@ -42,5 +40,10 @@ public class MangerController {
         manager.setCreatedDate(new Date());
         manager.setIsActive(true);
         managerService.saveManager(manager);
+    }
+
+    @RequestMapping(value = "findManagerByTeamName", method = RequestMethod.GET)
+    public Manager getManagerByTeamName(@RequestParam String teamName){
+        return managerService.getManagerByTeamName(teamName);
     }
 }

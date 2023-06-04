@@ -12,23 +12,24 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "employee")
 public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
-    @RequestMapping("employee/create")
-    public void saveEmployee (@RequestBody GetEmployeeRequestObject employeeRequestObject) {
+    @RequestMapping("create")
+    public void saveEmployee(@RequestBody GetEmployeeRequestObject employeeRequestObject) {
         createEmployee(employeeRequestObject);
     }
 
-    @RequestMapping("employee/get")
-    public List<Employee> getEmployees () {
+    @RequestMapping("get")
+    public List<Employee> getEmployees() {
         return employeeService.getEmployees();
     }
 
     //Path Variable
-    @RequestMapping("employee/get/{employeeId}")
-    public GetEmployeeResponse createEmployee (@PathVariable Long employeeId) {
+    @RequestMapping("get/{employeeId}")
+    public GetEmployeeResponse createEmployee(@PathVariable Long employeeId) {
         return employeeService.getEmployeeById(employeeId);
     }
 
@@ -42,5 +43,10 @@ public class EmployeeController {
         employee.setCreatedDate(new Date());
         employee.setIsActive(true);
         employeeService.saveEmployee(employee);
+    }
+
+    @RequestMapping(value = "getByDepartment")
+    public List<Employee> getAllEmployeesByDepartment(@RequestParam String departmentName) {
+        return employeeService.getEmployeesByDept(departmentName);
     }
 }
